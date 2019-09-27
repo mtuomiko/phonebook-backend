@@ -1,0 +1,27 @@
+{
+  "name": "phonebook-backend",
+  "version": "0.0.1",
+  "description": "Full Stack Open 2019 phonebook backend server application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "watch": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mtuomiko/full-stack-part3.git"
+  },
+  "author": "Matti Tuomikoski",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mtuomiko/full-stack-part3/issues"
+  },
+  "homepage": "https://github.com/mtuomiko/full-stack-part3#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  }
+}
