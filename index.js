@@ -94,7 +94,7 @@ app.post('/api/persons', (req, res) => {
 
   if (!body.number) {
     return res.status(400).json({
-      error: 'person number is missing'
+      error: 'phone number is missing'
     })
   }
 
