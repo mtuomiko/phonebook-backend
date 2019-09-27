@@ -7,12 +7,13 @@ const app = express()
 
 app.use(cors())
 app.use(bodyParser.json())
+app.use(express.static('build'))
 
 morgan.token('request-body', (req) => {
   return JSON.stringify(req.body)
 })
-// morgan outputs empty tokens as a dash so i did this to avoid printing 
-// the extra dash for non-POST requests
+// morgan outputs empty tokens as a dash so i did this to avoid printing the 
+// extra dash for non-POST requests, otherwise could have gone with simpler code
 app.use(morgan((tokens, req, res) => {
   const baseFormat = [
     tokens.method(req, res),
