@@ -10,15 +10,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mtuomiko/full-stack-part3.git"
+    "url": "git+https://github.com/mtuomiko/phonebook-backend.git"
   },
   "author": "Matti Tuomikoski",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mtuomiko/full-stack-part3/issues"
+    "url": "https://github.com/mtuomiko/phonebook-backend/issues"
   },
-  "homepage": "https://github.com/mtuomiko/full-stack-part3#readme",
+  "homepage": "https://github.com/mtuomiko/phonebook-backend#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "morgan": "^1.9.1"
   },
