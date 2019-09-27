@@ -1,8 +1,31 @@
 const express = require('express')
-const app = express()
 const bodyParser = require('body-parser')
+const morgan = require('morgan')
+
+const app = express()
 
 app.use(bodyParser.json())
+
+morgan.token('request-body', (req) => {
+  return JSON.stringify(req.body)
+})
+// morgan outputs empty tokens as a dash so i did this to avoid printing 
+// the extra dash for non-POST requests
+app.use(morgan((tokens, req, res) => {
+  const baseFormat = [
+    tokens.method(req, res),
+    tokens.url(req, res),
+    tokens.status(req, res),
+    tokens.res(req, res, 'content-length'), '-',
+    tokens['response-time'](req, res), 'ms',
+  ].join(' ')
+
+  if (req.method === 'POST') {
+    return `${baseFormat} ${tokens['request-body'](req, res)}`
+  }
+  return baseFormat
+}))
+
 
 let persons = [
   {
@@ -62,20 +85,20 @@ app.post('/api/persons', (req, res) => {
   const body = req.body
 
   if (!body.name) {
-    return res.status(400).json({ 
-      error: 'person name is missing' 
+    return res.status(400).json({
+      error: 'person name is missing'
     })
   }
 
   if (!body.number) {
-    return res.status(400).json({ 
-      error: 'person number is missing' 
+    return res.status(400).json({
+      error: 'person number is missing'
     })
   }
 
   if (persons.find(person => person.name === body.name)) {
-    return res.status(409).json({ 
-      error: 'person name already exists in phonebook' 
+    return res.status(409).json({
+      error: 'person name already exists in phonebook'
     })
   }
 
