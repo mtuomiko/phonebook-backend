@@ -11,14 +11,14 @@ mongoose.connect(url, {
   useFindAndModify: false,
   useCreateIndex: true,
 })
-  .then(result => {
+  .then(() => {
     console.log('connected to MongoDB')
   })
   .catch((error) => {
     console.log('error connecting to MongoDB:', error.message)
   })
 
-// The string must have at least 8 digits, we don't care about anything else 
+// The string must have at least 8 digits, we don't care about anything else
 const numberValidator = input => /(?:\D*\d\D*){8,}/.test(input)
 
 const numberValidatorObject = [

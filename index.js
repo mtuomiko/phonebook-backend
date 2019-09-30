@@ -14,7 +14,7 @@ app.use(cors())
 morgan.token('request-body', (req) => {
   return JSON.stringify(req.body)
 })
-// morgan outputs empty tokens as a dash so i did this to avoid printing the 
+// morgan outputs empty tokens as a dash so i did this to avoid printing the
 // extra dash for non-POST requests, otherwise could have gone with simpler code
 app.use(morgan((tokens, req, res) => {
   const baseFormat = [
@@ -56,17 +56,17 @@ app.get('/api/persons/:id', (req, res, next) => {
     .catch(error => next(error))
 })
 
-app.delete('/api/persons/:id', (req, res) => {
+app.delete('/api/persons/:id', (req, res, next) => {
   Person.findByIdAndDelete(req.params.id)
-    .then(result => {
+    .then(() => {
       res.status(204).end()
     })
     .catch(error => next(error))
 })
 
-const randomId = () => {
+/*const randomId = () => {
   return Math.floor(Math.random() * (2147483647 + 1))
-}
+}*/
 
 app.post('/api/persons', (req, res, next) => {
   const body = req.body
@@ -95,7 +95,7 @@ app.put('/api/persons/:id', (req, res, next) => {
   Person.findByIdAndUpdate(
     req.params.id,
     person,
-    { 
+    {
       new: true,
       runValidators: true,
       context: 'query',
